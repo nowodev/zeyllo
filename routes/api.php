@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-
-//Route::middleware('auth:sanctum')->group(function () {
-//    Route::resource('blogs', BlogController::class);
-//});
-
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => '/api/v1/'], function() {
-
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/'], function() {
+    Route::get('products/popular', [ProductController::class, 'popular']);
+    Route::get('products/recommended', [ProductController::class, 'recommended']);
+    Route::resource('products', ProductController::class);
 });
