@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/'], function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('products/popular', [ProductController::class, 'popular']);
     Route::get('products/recommended', [ProductController::class, 'recommended']);
     Route::resource('products', ProductController::class);
