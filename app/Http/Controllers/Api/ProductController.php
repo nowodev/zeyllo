@@ -81,20 +81,47 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateProductRequest $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     * @return JsonResponse
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product): JsonResponse
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:1000',
+            'price' => 'required|numeric',
+            'stars' => 'required|numeric|digits_between:1,5',
+            'img' => 'required|string',
+            'location' => 'required|string|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status_code' => 401,
+                'message' => 'Error Validation',
+                'data' => [
+                    $validator->errors()
+                ],
+            ]);
+        }
+
+        $product->update($input);
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Product Updated',
+            'data' => $product,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return Response
      */
     public function destroy(Product $product)
     {
