@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -121,11 +120,16 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): JsonResponse
     {
-        //
+        $product->delete();
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Product Deleted',
+        ]);
     }
 
     public function popular(): JsonResponse
