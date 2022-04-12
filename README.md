@@ -26,26 +26,20 @@ Serve the project locally
 
 ### Authentication Endpoints
 
-```
     [POST] Register:                    /api/register
     [POST] Login:                       /api/login
-```
 
 The registration endpoint accepts 4 values:
 
-```
     name,
     email,
     password,
     confirm_password
-```
 
 The login endpoint accepts 2 values:
 
-```
     email, 
     password
-```
 
 ### Product Endpoints
 
@@ -60,11 +54,9 @@ The login endpoint accepts 2 values:
 
 The `CREATE`, and `UPDATE` endpoints accept 6 values:
 
-```
     name,                               // string
     description,                        // string
     price,                              // integer
     stars,                              // integer
     img,                                // string
     location,                           // string
-```
