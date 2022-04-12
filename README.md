@@ -48,8 +48,8 @@ The login endpoint accepts 2 values:
     [GET] Fetch/Read Single Product:   /api/v1/products/{id}
     [GET] Fetch Popular Product:       /api/v1/products/popular
     [GET] Fetch Recommended Product:   /api/v1/products/recommended
-    [PUT] Update Product:              /api/products/{id}
-    [DEL] Delete Product:              /api/products/{id}
+    [PUT] Update Product:              /api/v1/products/{id}
+    [DEL] Delete Product:              /api/v1/products/{id}
 
 
 The `CREATE`, and `UPDATE` endpoints accept 6 values:
