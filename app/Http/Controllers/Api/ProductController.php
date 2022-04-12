@@ -29,12 +29,39 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreProductRequest $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:1000',
+            'price' => 'required|numeric',
+            'stars' => 'required|numeric|digits_between:1,5',
+            'img' => 'required|string',
+            'location' => 'required|string|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status_code' => 401,
+                'message' => 'Error Validation',
+                'data' => [
+                    $validator->errors()
+                ],
+            ]);
+        }
+
+        $product = Product::query()->create($input);
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Product Added',
+            'data' => $product,
+        ]);
     }
 
     /**
