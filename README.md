@@ -49,8 +49,22 @@ The login endpoint accepts 2 values:
 
 ### Product Endpoints
 
-[//]: # (    [POST] Create:                      /api/inventory)
-[//]: # (    [GET] Fetch/Read All Products:     /api/v1/products)
-[//]: # (    [GET] Fetch/Read Single Product:  /api/v1/products/{id})
-    [GET] Fetch Popular Product:  /api/v1/products/popular
-    [GET] Fetch Recommended Product:  /api/v1/products/recommended
+    [POST] Create:                     /api/v1/products
+    [GET] Fetch/Read All Products:     /api/v1/products
+    [GET] Fetch/Read Single Product:   /api/v1/products/{id}
+    [GET] Fetch Popular Product:       /api/v1/products/popular
+    [GET] Fetch Recommended Product:   /api/v1/products/recommended
+    [PUT] Update Product:              /api/products/{id}
+    [DEL] Delete Product:              /api/products/{id}
+
+
+The `CREATE`, and `UPDATE` endpoints accept 6 values:
+
+```
+    name,                               // string
+    description,                        // string
+    price,                              // integer
+    stars,                              // integer
+    img,                                // string
+    location,                           // string
+```
