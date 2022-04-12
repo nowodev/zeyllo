@@ -26,5 +26,5 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('products/popular', [ProductController::class, 'popular']);
     Route::get('products/recommended', [ProductController::class, 'recommended']);
-    Route::resource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class);
 });
