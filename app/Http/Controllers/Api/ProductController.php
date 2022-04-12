@@ -3,21 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $products = Product::query()->paginate(10);
+
+        return response()->json([
+            'status_code' => 200,
+            'data' => $products
+        ]);
     }
 
     /**
