@@ -133,6 +133,7 @@ class ProductController extends Controller
         $products = Product::query()->latest()->take(5)->get();
 
         return response()->json([
+            'status_code' => 200,
             'data' => $products
         ]);
     }
@@ -142,6 +143,7 @@ class ProductController extends Controller
         $products = Product::query()->inRandomOrder()->take(5)->get();
 
         return response()->json([
+            'status_code' => 200,
             'data' => $products
         ]);
     }
