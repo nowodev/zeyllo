@@ -29,9 +29,10 @@ Serve the project locally
     [POST] Register:                    /api/register
     [POST] Login:                       /api/login
 
-The registration endpoint accepts 4 values:
+The registration endpoint accepts 5 values:
 
     name,
+    phone,
     email,
     password,
     confirm_password
