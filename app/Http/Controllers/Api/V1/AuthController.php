@@ -13,7 +13,8 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:6',
+            'f_name' => 'required|string|min:6',
+            'phone' => 'sometimes|string|min:11',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
@@ -38,7 +39,7 @@ class AuthController extends Controller
             'status_code' => 200,
             'message' => 'User Created Successfully',
             'data' => [
-                'name' => $user->name,
+                'f_name' => $user->f_name,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
             ],
@@ -67,7 +68,7 @@ class AuthController extends Controller
                 'status_code' => 200,
                 'message' => 'Authorized',
                 'data' => [
-                    'name' => $user?->name,
+                    'f_name' => $user?->f_name,
                     'access_token' => $token,
                     'token_type' => 'Bearer',
                 ],
@@ -75,7 +76,7 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status_code' => 500,
-                'message' => 'An Error Occurred. Try Again.' . $e
+                'message' => 'An Error Occurred. Try Again.',
             ]);
         }
     }

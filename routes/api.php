@@ -23,8 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+Route::get('products/popular', [ProductController::class, 'popular']);
+Route::get('products/recommended', [ProductController::class, 'recommended']);
+Route::apiResource('products', ProductController::class)->only('index', 'show');
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('products/popular', [ProductController::class, 'popular']);
-    Route::get('products/recommended', [ProductController::class, 'recommended']);
-    Route::apiResource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class)->except('index', 'show');
 });
