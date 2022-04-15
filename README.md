@@ -31,7 +31,7 @@ Serve the project locally
 
 The registration endpoint accepts 5 values:
 
-    name,
+    f_name,
     phone,
     email,
     password,
